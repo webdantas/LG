@@ -4,6 +4,9 @@ services:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
+      args:
+        UID: 1000
+        GID: 1000
 
     container_name: ${PROJECT_NAME}_php
 
