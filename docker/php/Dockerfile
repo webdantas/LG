@@ -1,8 +1,5 @@
 FROM php:7.4-fpm
 
-ARG UID=1000
-ARG GID=1000
-
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -10,13 +7,13 @@ RUN apt-get update && apt-get install -y \
     curl \
     nano \
     vim \
+    default-mysql-client \
     libpng-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
     libzip-dev \
     libonig-dev \
-    libxml2-dev \
-    default-mysql-client
+    libxml2-dev
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 
@@ -34,10 +31,5 @@ RUN docker-php-ext-install \
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
-
-RUN usermod -u ${UID} www-data && \
-    groupmod -g ${GID} www-data
-
-USER www-data
 
 CMD ["php-fpm"]
