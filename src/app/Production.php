@@ -15,6 +15,8 @@ class Production extends Model
 
     protected $casts = [
         'production_date' => 'date',
+        'produced_quantity' => 'integer',
+        'defect_quantity' => 'integer',
     ];
 
     public function getEfficiencyAttribute()

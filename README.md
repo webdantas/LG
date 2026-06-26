@@ -1,17 +1,17 @@
 # LG Electronics - Dashboard de Eficiência da Produção
 
-## Objetivo
+## Desafio Técnico
 
-Este projeto foi desenvolvido como resposta ao desafio técnico proposto pela LG Electronics.
+Este projeto foi desenvolvido como solução para o desafio técnico da LG Electronics.
 
-A aplicação apresenta um Dashboard para acompanhamento da eficiência de produção da Planta A durante o mês de janeiro de 2026, permitindo visualizar todas as linhas de produção ou filtrar uma linha específica.
+A aplicação apresenta um Dashboard para acompanhamento da eficiência de produção da Planta A durante o mês de janeiro de 2026.
 
 ---
 
-## Tecnologias Utilizadas
+# Tecnologias
 
 * PHP 7.4
-* Laravel 7
+* Laravel 7.30
 * MySQL 8
 * Blade
 * Bootstrap 5
@@ -22,7 +22,34 @@ A aplicação apresenta um Dashboard para acompanhamento da eficiência de produ
 
 ---
 
-## Linhas de Produção
+# Arquitetura
+
+```
+Docker
+    │
+    ├── Nginx
+    │
+    ├── PHP-FPM
+    │
+    └── MySQL 8
+```
+
+Aplicação desenvolvida utilizando o padrão MVC nativo do Laravel.
+
+---
+
+# Funcionalidades
+
+* Dashboard da produção
+* Filtro por linha de produção
+* Cards com indicadores
+* Gráfico de produção por linha
+* Tabela paginada
+* Dados simulados através de Seeder
+
+---
+
+# Linhas de Produção
 
 * Geladeira
 * Máquina de Lavar
@@ -31,23 +58,11 @@ A aplicação apresenta um Dashboard para acompanhamento da eficiência de produ
 
 ---
 
-## Funcionalidades
-
-* Dashboard de produção
-* Filtro por linha de produção
-* Total de peças produzidas
-* Total de defeitos
-* Eficiência média
-* Paginação dos registros
-* Dados simulados através de Seeder
-
----
-
-## Estrutura da Tabela
+# Estrutura da Tabela
 
 Tabela:
 
-```sql
+```
 productions
 ```
 
@@ -56,74 +71,63 @@ productions
 | id                | bigint           |
 | production_date   | date             |
 | product_line      | varchar(50)      |
-| produced_quantity | integer unsigned |
-| defect_quantity   | integer unsigned |
+| produced_quantity | unsigned integer |
+| defect_quantity   | unsigned integer |
 | created_at        | timestamp        |
 | updated_at        | timestamp        |
 
----
+Índices:
 
-## Exemplo de INSERT
-
-```sql
-INSERT INTO productions
-(
-    production_date,
-    product_line,
-    produced_quantity,
-    defect_quantity
-)
-VALUES
-(
-    '2026-01-01',
-    'Geladeira',
-    1053,
-    9
-);
-```
+* production_date
+* product_line
 
 ---
 
-## Eficiência
+# Cálculo da Eficiência
 
 A eficiência é calculada dinamicamente pela aplicação.
 
 ```
-((Produzidas - Defeitos) / Produzidas) * 100
+((Produzidas - Defeitos) / Produzidas) × 100
 ```
 
-A decisão de calcular em tempo de execução evita inconsistência de dados e elimina redundância no banco.
+O valor não é armazenado no banco de dados para evitar redundância de informações.
 
 ---
 
-## Executando o Projeto
+# Como executar
 
-### Subir os containers
+Subir os containers
 
 ```bash
-docker compose --env-file .env.docker up -d
+docker compose --env-file .env.docker up -d --build
 ```
 
-### Instalar dependências
+Entrar no container
+
+```bash
+docker compose exec php bash
+```
+
+Instalar dependências
 
 ```bash
 composer install
 ```
 
-### Configurar o ambiente
+Gerar chave
 
 ```bash
-cp .env.example .env
 php artisan key:generate
 ```
 
-### Executar as migrations
+Executar migrations
 
 ```bash
 php artisan migrate
 ```
 
-### Popular a base
+Popular o banco
 
 ```bash
 php artisan db:seed
@@ -131,7 +135,7 @@ php artisan db:seed
 
 ---
 
-## Acesso
+# Acesso
 
 Aplicação
 
@@ -147,7 +151,7 @@ http://localhost:8081
 
 ---
 
-## Estrutura do Projeto
+# Estrutura do Projeto
 
 ```
 app/
@@ -159,39 +163,16 @@ docker/
 
 ---
 
-## Testes
+# Decisões Técnicas
 
-```bash
-vendor/bin/phpunit
-```
-
----
-
-## Boas práticas adotadas
-
-* Laravel MVC
-* Eloquent ORM
-* Blade Template
-* PSR-12
-* KISS
-* DRY
-* Mass Assignment Protection
-* Paginação
-* Índices no banco de dados
-* Dados simulados via Seeder
+* Utilização do Eloquent ORM.
+* Paginação para melhor desempenho da listagem.
+* Dados simulados utilizando Seeders.
+* Dashboard desenvolvido com Blade, Bootstrap e JavaScript.
+* Gráfico utilizando Chart.js.
 
 ---
 
-## Melhorias Futuras
-
-* Dashboard com gráficos
-* Exportação para Excel
-* API REST
-* Indicadores em tempo real
-* Autenticação de usuários
-
----
-
-## Autor
+# Autor
 
 Eduardo Correia
