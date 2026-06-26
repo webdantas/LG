@@ -9,6 +9,7 @@
 ## Release
 
 **Current Version:** `v1.0.1`
+
 **Build Status** `Stable`
 
 **Release Status:** `Stable`
