@@ -189,6 +189,12 @@ docker compose --env-file .env.docker exec php bash
 composer install
 ```
 
+```bash
+chown -R 1000:1000 storage bootstrap/cache
+
+chmod -R 775 storage bootstrap/cache
+```
+
 ### 6. Criar o ambiente Laravel
 
 ```bash
