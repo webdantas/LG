@@ -12,6 +12,7 @@ class DashboardController extends Controller
         $line = $request->input('line');
 
         $query = Production::query()
+            ->whereBetween('production_date', ['2026-01-01', '2026-01-31'])
             ->when(
                 $request->filled('line'),
                 function ($query) use ($line) {
@@ -68,6 +69,7 @@ class DashboardController extends Controller
         */
 
         $lines = Production::query()
+            ->whereBetween('production_date', ['2026-01-01', '2026-01-31'])
             ->select('product_line')
             ->distinct()
             ->orderBy('product_line')
