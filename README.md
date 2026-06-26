@@ -10,7 +10,7 @@
 
 **Current Version:** `v1.0.1`
 
-**Build Status** `Stable`
+**Status:** `Stable`
 
 **Release Status:** `Stable`
 
@@ -50,11 +50,11 @@ Docker
     ├── Nginx
     │
     ├── PHP-FPM
-    |
-    ├── Laravel MVC
-    |
+    │
+    ├── Laravel 7 (MVC)
+    │
     ├── Eloquent ORM
-    │    
+    │
     └── MySQL 8
 ```
 
@@ -155,46 +155,74 @@ O valor não é armazenado no banco de dados para evitar redundância de informa
 
 # Como executar
 
-Subir os containers
+### 1. Clonar o projeto
+
+```bash
+git clone https://github.com/webdantas/LG.git
+
+cd LG
+```
+
+### 2. Criar o arquivo de ambiente do Docker
+
+```bash
+cp .env.docker.example .env.docker
+```
+
+*(Caso o projeto já possua `.env.docker`, este passo pode ser ignorado.)*
+
+### 3. Subir os containers
 
 ```bash
 docker compose --env-file .env.docker up -d --build
 ```
 
-Entrar no container
+### 4. Entrar no container PHP
 
 ```bash
 docker compose --env-file .env.docker exec php bash
 ```
 
-Instalar dependências
+### 5. Instalar dependências
 
 ```bash
 composer install
 ```
 
-Criar o arquivo de ambiente
+### 6. Criar o ambiente Laravel
 
 ```bash
 cp .env.example .env
 ```
 
-Gerar chave
+### 7. Gerar a chave da aplicação
 
 ```bash
 php artisan key:generate
 ```
 
-Executar migrations
+### 8. Executar as migrations e popular o banco
 
 ```bash
-php artisan migrate
+php artisan migrate:fresh --seed
 ```
 
-Popular o banco
+### 9. Limpar caches
 
 ```bash
-php artisan db:seed
+php artisan optimize:clear
+```
+
+---
+
+### Observação sobre permissões
+
+Caso o projeto seja executado em Linux e ocorram problemas de permissão nas pastas `storage` ou `bootstrap/cache`, execute:
+
+```bash
+chown -R 1000:1000 storage bootstrap/cache
+
+chmod -R 775 storage bootstrap/cache
 ```
 
 ---
@@ -229,36 +257,23 @@ docker/
 
 # Decisões Técnicas
 
-* Utilização do Eloquent ORM.
-* Paginação para melhor desempenho da listagem.
-* Dados simulados utilizando Seeders.
-* Dashboard desenvolvido com Blade, Bootstrap e JavaScript.
-* Gráfico utilizando Chart.js.
+- Laravel 7 utilizando arquitetura MVC.
+- Eloquent ORM para acesso aos dados.
+- Dashboard desenvolvido com Blade e Bootstrap 5.
+- JavaScript Vanilla para interações da interface.
+- Chart.js para visualização gráfica.
+- Paginação nativa do Laravel.
+- Cálculo da eficiência realizado dinamicamente (não persistido em banco).
+- Dados simulados através de Seeders.
+- Ambiente totalmente containerizado com Docker.
 
----
-
-# Roadmap
-
-**Future Improvements**
-
-* Export CSV
-
-* Export Excel
-
-* OpenAI Integration
-
-* REST API
-
-* Redis Cache
-
-* Queue
-
-* CI/CD
-
-* Observability
 
 ---
 
 # Autor
 
-Eduardo Correia
+**Eduardo Correia**
+
+Senior PHP / Laravel Developer
+
+São Paulo - Brazil

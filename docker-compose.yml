@@ -1,13 +1,19 @@
 services:
 
   php:
+
     build:
       context: .
       dockerfile: docker/php/Dockerfile
+      args:
+        UID: 1000
+        GID: 1000
 
     restart: unless-stopped
 
     working_dir: /var/www
+
+    user: "1000:1000"
 
     volumes:
       - ./src:/var/www
@@ -46,11 +52,11 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
 
-    ports:
-      - "${MYSQL_PORT}:3306"
-
     command:
       --default-authentication-plugin=mysql_native_password
+
+    ports:
+      - "${MYSQL_PORT}:3306"
 
     volumes:
       - mysql_data:/var/lib/mysql
