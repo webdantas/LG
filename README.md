@@ -9,19 +9,7 @@
 ## Release
 
 **Current Version:** `v1.0.1`
-**Build Status**
-
-# ✔ Stable
-
-**Compatibility**
-
-# ✔ PHP 7.4
-
-# ✔ Laravel 7.30
-
-# ✔ MySQL 8
-
-# ✔ Docker
+**Build Status** `Stable`
 
 **Release Status:** `Stable`
 
