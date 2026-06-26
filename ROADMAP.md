@@ -1,5 +1,17 @@
 # Roadmap
+# Released
 
+## 1.0.0
+- Initial Release
+
+
+# Released
+
+## v1.0.1
+- Maintenance Release
+
+
+# Planned
 ## v1.1.0
 
 - Exportação CSV
@@ -43,3 +55,17 @@
 - RabbitMQ/Kafka
 - Observabilidade
 - CI/CD
+
+---
+
+## Future
+
+## v2.1
+
+- Authentication
+
+- Authorization
+
+- Audit Log
+
+- Metrics

@@ -10,7 +10,7 @@ Todas as alterações relevantes deste projeto serão documentadas aqui.
 - Ajustado o `.env.example` para refletir a configuração Docker do MySQL.
 - Limitada a consulta do Dashboard ao período de janeiro de 2026.
 
-### Documentation
+### Documentation Improvements
 
 - Adicionado SQL equivalente da tabela `productions`.
 - Adicionados exemplos de `INSERT` para simulação do banco no README.

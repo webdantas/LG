@@ -9,6 +9,21 @@
 ## Release
 
 **Current Version:** `v1.0.1`
+**Build Status**
+
+# ✔ Stable
+
+**Compatibility**
+
+# ✔ PHP 7.4
+
+# ✔ Laravel 7.30
+
+# ✔ MySQL 8
+
+# ✔ Docker
+
+**Release Status:** `Stable`
 
 ---
 
@@ -46,7 +61,11 @@ Docker
     ├── Nginx
     │
     ├── PHP-FPM
-    │
+    |
+    ├── Laravel MVC
+    |
+    ├── Eloquent ORM
+    │    
     └── MySQL 8
 ```
 
@@ -156,7 +175,7 @@ docker compose --env-file .env.docker up -d --build
 Entrar no container
 
 ```bash
-docker compose exec php bash
+docker compose --env-file .env.docker exec php bash
 ```
 
 Instalar dependências
@@ -226,6 +245,28 @@ docker/
 * Dados simulados utilizando Seeders.
 * Dashboard desenvolvido com Blade, Bootstrap e JavaScript.
 * Gráfico utilizando Chart.js.
+
+---
+
+# Roadmap
+
+**Future Improvements**
+
+* Export CSV
+
+* Export Excel
+
+* OpenAI Integration
+
+* REST API
+
+* Redis Cache
+
+* Queue
+
+* CI/CD
+
+* Observability
 
 ---
 
